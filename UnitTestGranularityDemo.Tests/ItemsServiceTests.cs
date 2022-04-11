@@ -5,9 +5,9 @@ namespace UnitTestGranularityDemo.Tests
 {
     public class ItemsServiceTests
     {
-        private ItemController CreateSut()
+        private ItemService CreateSut()
         {
-            return new ItemController(new ItemService());
+            return new ItemService();
         }
 
         public static IEnumerable<object[]> SerializeTestData => new List<object[]>
@@ -16,17 +16,17 @@ namespace UnitTestGranularityDemo.Tests
             {
                 Type = ItemType.String,
                 Value = "test value"
-            }, "Output is: test value" },
+            }, "test value" },
             new object [] { new Item
             {
                 Type = ItemType.Geo,
                 Value = "45,54"
-            }, "Output is: lat:45,lon:54" },
+            }, "lat:45,lon:54" },
             new object [] { new Item
             {
                 Type = ItemType.Range,
                 Value = "45-54"
-            }, "Output is: gte:45,lte:54" },
+            }, "gte:45,lte:54" },
             
         };
 
@@ -38,7 +38,7 @@ namespace UnitTestGranularityDemo.Tests
             var sut = CreateSut();
 
             //act
-            var actualResult = sut.Process(item);
+            var actualResult = sut.Serialize(item);
 
             //assert
             Assert.Equal(actualResult, expectedResult);

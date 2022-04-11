@@ -2,9 +2,9 @@
 {
     public class ItemController
     {
-        private readonly ItemService _serializer;
+        private readonly IItemService _serializer;
 
-        public ItemController(ItemService serializer)
+        public ItemController(IItemService serializer)
         {
             _serializer = serializer;
         }

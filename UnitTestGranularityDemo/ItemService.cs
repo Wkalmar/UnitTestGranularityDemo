@@ -2,7 +2,12 @@
 
 namespace UnitTestGranularityDemo
 {
-    public class ItemService
+    public interface IItemService
+    {
+        string Serialize(Item input);
+    }
+
+    public class ItemService : IItemService
     {
         public string Serialize(Item input)
         {

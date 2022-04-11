@@ -2,16 +2,17 @@
 {
     public class ItemController
     {
-        private readonly IItemService _serializer;
+        private readonly IItemService _service;
 
-        public ItemController(IItemService serializer)
+        public ItemController(IItemService service)
         {
-            _serializer = serializer;
+            _service = service;
         }
 
         public string Process(Item item)
         {
-            return $"Output is: {_serializer.Serialize(item)}";
+            var serialized = _service.Serialize(item);
+            return _service.Wrap(serialized);
         }
     }
 }

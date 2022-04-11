@@ -4,14 +4,15 @@
     {
         private readonly IItemService _serializer;
 
-        public ItemController(IItemService serializer)
+        public ItemController(IItemService service)
         {
-            _serializer = serializer;
+            _serializer = service;
         }
 
         public string Process(Item item)
         {
-            return $"Output is: {_serializer.Serialize(item)}";
+            var serializedOutput = _serializer.Serialize(item);
+            return _serializer.Wrap(serializedOutput);
         }
     }
 }

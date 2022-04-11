@@ -5,6 +5,7 @@ namespace UnitTestGranularityDemo
     public interface IItemService
     {
         string Serialize(Item input);
+        string Wrap(string serializedOutput);
     }
 
     public class ItemService : IItemService
@@ -22,6 +23,11 @@ namespace UnitTestGranularityDemo
                 default:
                     throw new ArgumentOutOfRangeException(nameof(input.Type));
             }
+        }
+
+        public string Wrap(string serializedOutput)
+        {
+            return $"The output is: {serializedOutput}";
         }
 
         private string SerializeRange(string value)
